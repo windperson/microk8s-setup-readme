@@ -28,7 +28,7 @@ For any unresolved issues, check official github repository: https://github.com/
 
 MicroK8S installer download URL: https://microk8s.io/microk8s-installer.exe
 
-On Windows, MicroK8s can be run on **Hyper-V** based VM or **VirtualBox**. Both of these requires at least 4GB free RAM & 50GB free disk spaces available.
+On Windows, MicroK8s can be run on **Hyper-V** based VM or **VirtualBox** based VM. Both of these requires at least 4GB free RAM & 50GB free disk spaces available. On Windows 10/11 Home Edition, you must using VirtualBox approach since Hyper-V is not available on that SKU.
 
 Recommend to install *[Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/)* & *[PowerShell v7.2 or above](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows)* for better CLI experience.
 
@@ -97,4 +97,40 @@ By default, Hypver-V VM's NAT network IP address would change after each time ho
        ```
        ![set MicroK8S config file](./pics/Set_dns_name_MicroK8s_HyperV_05.png)
        
+#### VirtualBox installation 
 
+##### Prerequisite
+
+**Note:**   
+You have to install [VirtualBox](https://www.virtualbox.org/) & [Mulitpass](https://multipass.run/) ***manually***, Choose VirtualBox as underlying Hypervisor And Reboot Windows, Run Mulitpass's "**Open Shell**" command before run MicroK8S installer, then the installer will be able to start MicroK8s VM correctly.
+
+The most straightforward way to install is by "[winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/)" command line:
+
+1. Install VirtualBox:
+   ```
+   winget install --id Oracle.VirtualBox
+   ```
+   ![Install VirtualBox via winget](./pics/Install_VBox_by_winget.png)
+2. Install Multipass, be sure to add last `-i` argument for interactive installation:
+   ```
+   winget install --id Canonical.Multipass -i
+   ```
+   During installation wizard, be sure to choose Oracle VirtualBox when ask which Hypervisor to use:  
+   ![Choose Oracle VirtualBox as Hypervisor](./pics/Install_Multipass_winget_choose_hypervisor.png)
+   Be sure to select **Add multipass to the current user's PATH** option in following install wizard page:  
+   ![Add Multipass to Path](./pics/Install_Multipass_winget_01.png)
+3. Reboot Windows for VirtualBox's virtual hardware driver took effect.
+4. Start Multipass application from start menu (Or it has already been auto started by default installation configuration, Click "**Open Shell**" from its tray icon:  
+   ![Open Shell of Multipass](./pics/Install_Multipass_winget_02.png)
+5. Wait for PowerShell window doing 1st time preparation of primary VM of Multipass downloading VM image:  
+   ![Wait 1st time primary](./pics/Install_Multipass_winget_03.png)  
+   When its done, PowerShell Window will show a Linux Bash has success login status, And the tray Icon will show the "primary" VM is running, which means Multipass has installed completely:
+   ![Multipass installed successfully](./pics/Install_Multipass_winget_04.png)
+    
+##### Installation:
+
+1. Run MicroK8S installer, check Add 'microk8s' to PATH, click Install:  
+   ![Check Add microk8s to PATH](./pics/Install_MicroK8s_VBox_01.png)
+
+3. Select Oracle VM VirtualBox, then click Next:  
+   ![Select using VirtualBox ](./pics/Install_MicroK8s_VBox_03.png)
