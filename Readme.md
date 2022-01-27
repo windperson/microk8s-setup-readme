@@ -60,7 +60,7 @@ winget install --id Microsoft.WindowsTerminal
    ![Check Add microk8s to PATH](./pics/Install_MicroK8s_HyperV_08.png)
 9. It will prompt to configure microK8S VM, click Yes:  
    ![Ask for MicroK8s VM configuration](./pics/Install_MicroK8s_HyperV_09.png)
-10. Click Next to accept default VM creation spec:  
+10. Click Next to accept default VM creation configuration:  
    ![McroK8s VM creation spec](./pics/Install_MicroK8s_HyperV_10.png)  
    Then wait for Linux VM and MicroK8S instance downloading & installation:  
    ![McroK8s VM downloading & installing](./pics/Install_MicroK8s_HyperV_10-1.png)  
@@ -120,17 +120,24 @@ The most straightforward way to install is by "[winget](https://docs.microsoft.c
    Be sure to select **Add multipass to the current user's PATH** option in following install wizard page:  
    ![Add Multipass to Path](./pics/Install_Multipass_winget_01.png)
 3. Reboot Windows for VirtualBox's virtual hardware driver took effect.
-4. Start Multipass application from start menu (Or it has already been auto started by default installation configuration, Click "**Open Shell**" from its tray icon:  
+4. Start Multipass application from start menu (Or it has already been auto started by default installation configuration, Right Click then select "**Open Shell**" from its tray icon:  
    ![Open Shell of Multipass](./pics/Install_Multipass_winget_02.png)
 5. Wait for PowerShell window doing 1st time preparation of primary VM of Multipass downloading VM image:  
    ![Wait 1st time primary](./pics/Install_Multipass_winget_03.png)  
-   When its done, PowerShell Window will show a Linux Bash has success login status, And the tray Icon will show the "primary" VM is running, which means Multipass has installed completely:
+   When its done, PowerShell Window will show a Linux Bash has success login status, And the tray icon will show "primary" VM is running, which means Multipass has installed successfully:
    ![Multipass installed successfully](./pics/Install_Multipass_winget_04.png)
     
 ##### Installation:
 
 1. Run MicroK8S installer, check Add 'microk8s' to PATH, click Install:  
    ![Check Add microk8s to PATH](./pics/Install_MicroK8s_VBox_01.png)
-
-3. Select Oracle VM VirtualBox, then click Next:  
-   ![Select using VirtualBox ](./pics/Install_MicroK8s_VBox_03.png)
+2. Click Yes to start preparing MicroK8s VM:  
+   ![Ask for MicroK8s VM configuration](./pics/Install_MicroK8s_VBox_02.png)
+3. Click Next to accept default VM creation configuration:  
+   ![McroK8s VM creation spec](./pics/Install_MicroK8s_VBox_03.png)
+4. Wait for MicroK8s VM downloading & preparation:  
+   ![McroK8s VM downloading & installing](./pics/Install_MicroK8s_VBox_04.png)  
+   Finally, the installer will show MicroK8s for Windows installation completed:  
+   ![McroK8s install completed ](./pics/Install_MicroK8s_VBox_05.png)  
+   We can start using **microk8s** on command line window, for example, `microk8s status --wait-ready` to check running status:  
+   ![McroK8s VM creation spec](./pics/Install_MicroK8s_VBox_06.png)
