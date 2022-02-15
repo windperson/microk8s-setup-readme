@@ -23,7 +23,6 @@ For any unresolved issues, check official github repository: https://github.com/
    ```
    Reboot for it took effect.
 
-
 ### Windows
 
 MicroK8S installer download URL: https://microk8s.io/microk8s-installer.exe
@@ -71,7 +70,9 @@ winget install --id Microsoft.WindowsTerminal
 
 ##### Configuration:
 * Set stable hostname of Hyper-V VM:  
-By default, Hypver-V VM's NAT network IP address would change after each time host reboot, according to [this](https://github.com/ubuntu/microk8s/issues/22#issuecomment-884059245), we can set MicroK8s config file to use hostname instead of IP address to avoid connect failure:
+By default, Hypver-V VM's NAT network IP address would change after each time host reboot, So you will unable to use kubectl cli tool of MicroK8s after host computer reboot:   
+![kubectl of MicroK8s cannot access after reboot](./pics/HyperV_MicroK8s_kubectl_failed_after_reboot.png)  
+According to [this GitHub issue](https://github.com/ubuntu/microk8s/issues/22#issuecomment-884059245), we can set MicroK8s config file to use hostname instead of IP address to avoid kubectl connection failure:
 
     1. Login into the MicroK8S VM by:
        ```
