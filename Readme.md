@@ -39,6 +39,13 @@ winget install --id Microsoft.WindowsTerminal
 
 #### Hyper-V installation 
 
+**Note:**
+
+If your system drive is less than 50GB free space, you can create symbolic link in PowerShell with Administrator permission, so redirect various configuration and VM image files of multipass saving to another disk drive, for example, the following command make those files save to `D:\multipassd` folder:
+```
+New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\config\systemprofile\AppData\Roaming\multipassd" -Target "D\multipassd"
+```
+
 ##### Installation:
 
 1. Run MicroK8S installer, check Add 'microk8s' to PATH, click Install:  
@@ -142,3 +149,6 @@ The most straightforward way to install is by "[winget](https://docs.microsoft.c
    ![McroK8s install completed ](./pics/Install_MicroK8s_VBox_05.png)  
    We can start using **microk8s** on command line window, for example, `microk8s status --wait-ready` to check running status:  
    ![McroK8s VM creation spec](./pics/Install_MicroK8s_VBox_06.png)
+   
+Some other configuration notices can be found on [official document](https://multipass.run/docs/using-virtualbox-in-multipass-windows).
+
