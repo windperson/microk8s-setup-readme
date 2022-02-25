@@ -4,6 +4,13 @@ For any unresolved issues, check official github repository: https://github.com/
 
 ## Install MicroK8s
 
+### macOS
+
+Install [homebrew](https://brew.sh/), then follow the [official document](https://microk8s.io/docs/install-alternatives#heading--macos) to install microk8s.
+
+if you have issue to start *microk8s-vm* VM instance, try to [turn off VPN  installed on host OS](https://github.com/canonical/microk8s/issues/1287#issuecomment-707208977), or [try to run `microk8s uninstall` first, reboot host machine then run `microk8s install` again](https://github.com/canonical/microk8s/issues/1313#issuecomment-644217384).
+
+
 ### Ubuntu Linux
 
 1. Install via snap:
@@ -37,14 +44,19 @@ winget install --id Microsoft.PowerShell
 winget install --id Microsoft.WindowsTerminal
 ```
 
+**Note:**
+
+If your system drive (C:) is less than 50GB free space, you can create symbolic link in PowerShell with Administrator permission, so redirect various configuration and VM image files of multipass saving to another disk drive, for example, the following command make those files save to `D:\multipassd` folder:
+```
+New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\config\systemprofile\AppData\Roaming\multipassd" -Target "D\multipassd"
+```
+
 #### Hyper-V installation 
 
 **Note:**
 
-If your system drive is less than 50GB free space, you can create symbolic link in PowerShell with Administrator permission, so redirect various configuration and VM image files of multipass saving to another disk drive, for example, the following command make those files save to `D:\multipassd` folder:
-```
-New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\config\systemprofile\AppData\Roaming\multipassd" -Target "D\multipassd"
-```
+If your system drive (C:) is already exhausted, you can [manually install Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) first, then open Hyper-V manager to set both **Virtual Hard Disks** and **Virtual Machines** configuration files to another drive:
+![Open Hyper-V manager configuration UI](./pics/config_HyperV_folder.png)
 
 ##### Installation:
 
