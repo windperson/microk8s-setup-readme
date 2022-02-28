@@ -55,7 +55,7 @@ New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\config\systemprofile\
 
 **Note:**
 
-If your system drive (C:) is already exhausted, you can [manually install Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) first, then open Hyper-V manager to set both **Virtual Hard Disks** and **Virtual Machines** configuration files to another drive:
+If your system drive (C:) available free space is limited, you can [manually install Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) first, then open Hyper-V manager to set both **Virtual Hard Disks** and **Virtual Machines** configuration files to another drive:
 ![Open Hyper-V manager configuration UI](./pics/config_HyperV_folder.png)
 
 ##### Installation:
@@ -101,6 +101,7 @@ According to [this GitHub issue](https://github.com/ubuntu/microk8s/issues/2452#
        ```
        DNS.6 = microk8s-vm.mshome.net
        ```
+       ![Edit microK8s config file inside VM](./pics/Set_dns_name_MicroK8s_HyperV_02.png)
     3. Restart K8s service:
        ```
        sudo microk8s.stop; sudo microk8s.start
