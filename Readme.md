@@ -46,7 +46,8 @@ winget install --id Microsoft.WindowsTerminal
 
 **Note:**
 
-If your system drive (C:) is less than 50GB free space, you can create symbolic link in PowerShell with Administrator permission, so redirect various configuration and VM image files of multipass saving to another disk drive, for example, the following command make those files save to `D:\multipassd` folder:
+If your system drive (C:) is less than 50GB free space, you can create symbolic link in PowerShell with Administrator permission, so redirect various configuration and VM image files of multipass saving to another disk drive, for example, the following command make those files save to `D:\multipassd` folder:  
+(**Note**: you have to create target empty folder `D:\multipassd` before running this command.)
 ```
 New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\config\systemprofile\AppData\Roaming\multipassd\" -Target "D:\multipassd\"
 ```
@@ -58,7 +59,7 @@ New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\config\systemprofile\
 If your system drive (C:) available free space is limited, you can [manually install Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) first, then open Hyper-V manager to set both **Virtual Hard Disks** and **Virtual Machines** configuration files to another drive:
 ![Open Hyper-V manager configuration UI](./pics/config_HyperV_folder.png)
 
-##### Installation:
+##### Installation
 
 1. Run MicroK8S installer, check Add 'microk8s' to PATH, click Install:  
    ![Check Add microk8s to PATH](./pics/Install_MicroK8s_HyperV_01.png)
@@ -87,7 +88,7 @@ If your system drive (C:) available free space is limited, you can [manually ins
    We can start using **microk8s** on command line window, for example, `microk8s status --wait-ready` to check running status:  
    ![McroK8s VM creation spec](./pics/Install_MicroK8s_HyperV_10-3.png)
 
-##### Configuration:
+##### Configuration
 * Set stable hostname of Hyper-V VM:  
 By default, Hypver-V VM's NAT network IP address would change after each time host reboot, So you will unable to use kubectl cli tool of MicroK8s after host computer reboot:   
 ![kubectl of MicroK8s cannot access after reboot](./pics/HyperV_MicroK8s_kubectl_failed_after_reboot.png)  
@@ -122,7 +123,6 @@ According to [this GitHub issue](https://github.com/ubuntu/microk8s/issues/2452#
 
 ##### Prerequisite
 
-**Note:**   
 You have to install [VirtualBox](https://www.virtualbox.org/) & [Mulitpass](https://multipass.run/) ***manually***, Choose VirtualBox as underlying Hypervisor And Reboot Windows, Run Mulitpass's "**Open Shell**" command before run MicroK8S installer, then the installer will be able to start MicroK8s VM correctly.
 
 The most straightforward way to install is by "[winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/)" command line:
@@ -148,7 +148,7 @@ The most straightforward way to install is by "[winget](https://docs.microsoft.c
    When its done, PowerShell Window will show a Linux Bash has success login status, And the tray icon will show "primary" VM is running, which means Multipass has installed successfully:
    ![Multipass installed successfully](./pics/Install_Multipass_winget_04.png)
     
-##### Installation:
+##### Installation
 
 1. Run MicroK8S installer, check Add 'microk8s' to PATH, click Install:  
    ![Check Add microk8s to PATH](./pics/Install_MicroK8s_VBox_01.png)
