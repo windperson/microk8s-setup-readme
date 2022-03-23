@@ -1,6 +1,6 @@
 # MicroK8s setup
 
-For any unresolved issues, check official github repository: https://github.com/ubuntu/microk8s/issues
+For any unresolved issues, check official github repository: [https://github.com/ubuntu/microk8s/issues](https://github.com/ubuntu/microk8s/issues)
 
 ## Install MicroK8s
 
@@ -61,7 +61,7 @@ If your system drive (C:) available free space is limited, you can [manually ins
 
 ##### Installation
 
-1. Run MicroK8S installer, check Add 'microk8s' to PATH, click Install:  
+1. Run MicroK8S installer, check `Add 'microk8s' to PATH`, click Install:  
    ![Check Add microk8s to PATH](./pics/Install_MicroK8s_HyperV_01.png)
 2. It will prompt to **Multipass** install wizard, click Next to install:  
    ![Prompt to install Multipass](./pics/Install_MicroK8s_HyperV_02.png)
