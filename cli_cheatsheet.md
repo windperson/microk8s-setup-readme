@@ -1,3 +1,7 @@
+---
+title: Useful CLI commands
+---
+
 # MicroK8s useful commands
 
 * Start MicroK8s VM instance and Kubernates cluster:
