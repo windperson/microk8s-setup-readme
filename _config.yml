@@ -1,6 +1,15 @@
 title: How to use MicroK8s 
 remote_theme: just-the-docs/just-the-docs
+heading_anchors: true
 search_enabled: true
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Footer "Edit this page on GitHub" link text
 gh_edit_link: true
-gh_edit_link_text: "Edit this page on GitHub."
+gh_edit_link_text: "Edit this page on GitHub"
 gh_edit_repository: https://github.com/windperson/microk8s-setup-readme
+gh_edit_branch: "main"
+gh_edit_view_mode: "tree"
