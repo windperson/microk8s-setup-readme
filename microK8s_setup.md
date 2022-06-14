@@ -49,7 +49,7 @@ if you have issue to start *microk8s-vm* VM instance, try to [turn off VPN  inst
 
 ### Windows
 
-MicroK8S installer download URL: https://microk8s.io/microk8s-installer.exe
+MicroK8S installer download URL: [https://microk8s.io/microk8s-installer.exe](https://microk8s.io/microk8s-installer.exe)
 
 On Windows, MicroK8s can be run on **Hyper-V** based VM or **VirtualBox** based VM. Both of these requires at least 4GB free RAM & 50GB free disk spaces available. On Windows 10/11 Home Edition, you must using VirtualBox approach since Hyper-V is not available on that SKU.
 
@@ -188,10 +188,10 @@ The most straightforward way to install is by "[winget](https://docs.microsoft.c
 
 ##### Configuration
 
-Because the limitation of VirtualBox's NAT virtual network adapter, to use [microk8s kubectl cli](https://microk8s.io/docs/working-with-kubectl) command, you need to add port mapping to redirect port to host computer:
+Because the limitation of VirtualBox's NAT virtual network adapter, to use [microk8s kubectl](https://microk8s.io/docs/working-with-kubectl) command, you need to add port mapping to redirect port to host computer:
 
 1. Install [gsudo](https://gerardog.github.io/gsudo/)
-2. Open VirtualBox manager GUI as *Local System* permission by:
+2. Open VirtualBox manager GUI as [*LocalSystem* Account](https://docs.microsoft.com/en-us/windows/win32/services/localsystem-account) by command:
    ```powershell
    gsudo -s '& "$env:VBOX_MSI_INSTALL_PATH\VirtualBox.exe"'
    ```
