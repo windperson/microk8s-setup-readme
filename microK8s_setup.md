@@ -168,6 +168,7 @@ The most straightforward way to install is by "[winget](https://docs.microsoft.c
    ```powershell
    multipass set local.driver=virtualbox
    ```
+   ![Set VirtualBox as underlying hypervisor driver for Multipass](./pics/Set_Multipass_use_VirtualBox.png)
 5. Start Multipass application from start menu (Or it has already been auto started by default installation configuration, Right Click then select "**Open Shell**" from its tray icon:  
    ![Open Shell of Multipass](./pics/Install_Multipass_winget_02.png)
 6. Wait for PowerShell window doing 1st time preparation of primary VM of Multipass downloading VM image:  
