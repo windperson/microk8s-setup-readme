@@ -1,6 +1,6 @@
 ---
 title: MicroK8s setup on macOS / Ubuntu / Windows
-nav_order: 1
+nav_order: 2
 ---
 
 # MicroK8s setup
