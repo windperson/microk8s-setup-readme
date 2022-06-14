@@ -1,6 +1,5 @@
 ---
-title: Index
-nav_order: 1
+nav_exclude: true
 ---
 
 * [MicroK8s setup](./microK8s_setup.html) on macOS / Ubuntu / Windows
