@@ -71,7 +71,7 @@ winget install --id Microsoft.WindowsTerminal
 
 If your system drive (C:) is less than 50GB free space, you can create symbolic link in PowerShell with Administrator permission, so redirect various configuration and VM image files of multipass saving to another disk drive, for example, the following command make those files save to `D:\multipassd` folder:  
 (**Note**: you have to create target empty folder `D:\multipassd` before running this command.)
-```
+```powershell
 gsudo New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\config\systemprofile\AppData\Roaming\multipassd\" -Target "D:\multipassd\"
 ```
 
@@ -127,7 +127,7 @@ According to [this GitHub issue](https://github.com/ubuntu/microk8s/issues/2452#
        ```
        ![Edit microK8s config file inside VM](./pics/Set_dns_name_MicroK8s_HyperV_02.png)
     3. Restart K8s service:
-       ```
+       ```bash
        sudo microk8s.stop; sudo microk8s.start
        ```
        ![restart MicroK8S service](./pics/Set_dns_name_MicroK8s_HyperV_03.png)
@@ -196,7 +196,7 @@ Because the limitation of VirtualBox's NAT virtual network adapter, to use [`mic
    gsudo -s '& "$env:VBOX_MSI_INSTALL_PATH\VirtualBox.exe"'
    ```
    Add **16643** port forwarding of NAT network adapter 1 of microk8s-vm to host computer:    ![Add port 16643 port mapping to host computer](./pics/microk8s_virtualbox_kubectl_port_mapping.png)
-   Or you can use following command to do it at once without leaving CLI windows:
+   Or you can use following command to do that conveniently without leaving CLI windows:
    ```powershell
    sudo -s '& "$env:VBOX_MSI_INSTALL_PATH\VBoxManage.exe" controlvm microk8s-vm natpf1 "kubectl_port, tcp,,16443,,16443"'
    ```
