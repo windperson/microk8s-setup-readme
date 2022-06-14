@@ -1,7 +1,3 @@
----
-title: Install & Configure Microk8s
----
-
 # MicroK8s setup
 
 For any unresolved issues, check official github repository: [https://github.com/ubuntu/microk8s/issues](https://github.com/ubuntu/microk8s/issues)
