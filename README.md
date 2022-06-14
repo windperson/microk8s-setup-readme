@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Install & Configure Microk8s
-nav_order:5
+nav_order: 5
 ---
 
 # MicroK8s setup
