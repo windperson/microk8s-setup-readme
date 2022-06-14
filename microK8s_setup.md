@@ -118,7 +118,7 @@ By default, Hypver-V VM's NAT network IP address would change after each time ho
 According to [this GitHub issue](https://github.com/ubuntu/microk8s/issues/2452#issuecomment-884059245), we can set MicroK8s config file to use hostname instead of IP address to avoid kubectl connection failure:
 
     1. Login into the MicroK8S VM by:
-       ```
+       ```powershell
        multipass shell microk8s-vm
        ```
     2. Edit `/var/snap/microk8s/current/certs/csr.conf.template` configuration file (needs to use **sudo** to edit), add new DNS entries like following:
@@ -133,7 +133,7 @@ According to [this GitHub issue](https://github.com/ubuntu/microk8s/issues/2452#
        ![restart MicroK8S service](./pics/Set_dns_name_MicroK8s_HyperV_03.png)
     4. Exit MicroK8S VM shell by type `exit`.
     5. Modify MicorK8s configuration file `%LOCALAPPDATA%\MicroK8S\config` on Windows Host side, like following PowerShell command to open that file in Visual Studio Code:
-       ```
+       ```powershell
        code "$env:localappdata\MicroK8S\config"
        ```
        Replace line 5 `https://[private IPv4 address]:16443`'s IP address with domain name **microk8s-vm.mshome.net** as:
@@ -151,12 +151,12 @@ You have to install [VirtualBox](https://www.virtualbox.org/) & [Mulitpass](http
 The most straightforward way to install is by "[winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/)" command line:
 
 1. Install VirtualBox:
-   ```
+   ```powershell
    winget install --id Oracle.VirtualBox
    ```
    ![Install VirtualBox via winget](./pics/Install_VBox_by_winget.png)
 2. Install Multipass, be sure to add last `-i` argument for interactive installation:
-   ```
+   ```powershell
    winget install --id Canonical.Multipass -i
    ```
    During installation wizard, be sure to choose Oracle VirtualBox when ask which Hypervisor to use:  
@@ -188,7 +188,7 @@ The most straightforward way to install is by "[winget](https://docs.microsoft.c
 
 ##### Configuration
 
-Because the limitation of VirtualBox's NAT virtual network adapter, to use [microk8s kubectl](https://microk8s.io/docs/working-with-kubectl) command, you need to add port mapping to redirect port to host computer:
+Because the limitation of VirtualBox's NAT virtual network adapter, to use [`microk8s kubectl`](https://microk8s.io/docs/working-with-kubectl) command, you need to add port mapping to redirect port to host computer:
 
 1. Install [gsudo](https://gerardog.github.io/gsudo/)
 2. Open VirtualBox manager GUI as [*LocalSystem* Account](https://docs.microsoft.com/en-us/windows/win32/services/localsystem-account) by command:
@@ -201,7 +201,7 @@ Because the limitation of VirtualBox's NAT virtual network adapter, to use [micr
    sudo -s '& "$env:VBOX_MSI_INSTALL_PATH\VBoxManage.exe" controlvm microk8s-vm natpf1 "kubectl_port, tcp,,16443,,16443"'
    ```
 3. Modify MicorK8s configuration file `%LOCALAPPDATA%\MicroK8S\config` on Windows Host side, like following PowerShell command to open that file in Visual Studio Code:
-    ```
+    ```powershell
     code "$env:localappdata\MicroK8S\config"
     ```  
     Replace line 5 `https://[private IPv4 address]:16443`'s IP address with **127.0.0.1** like following:  
@@ -209,6 +209,8 @@ Because the limitation of VirtualBox's NAT virtual network adapter, to use [micr
     server: https://127.0.0.1:16443
     ```
     ![set MicroK8S config file](./pics/Set_Microk8s_virtualbox_kubectl_local_config.png)
+
+Then you will be able to invoke `microk8s kubectl` command normally on Windows Host.
 
 Some other configuration notices can be found on [official document](https://multipass.run/docs/using-virtualbox-in-multipass-windows).
 
