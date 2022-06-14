@@ -1,3 +1,9 @@
+---
+layout: default
+title: Install & Configure Microk8s
+nav_order:5
+---
+
 # MicroK8s setup
 
 For any unresolved issues, check official github repository: [https://github.com/ubuntu/microk8s/issues](https://github.com/ubuntu/microk8s/issues)
@@ -36,7 +42,13 @@ MicroK8S installer download URL: https://microk8s.io/microk8s-installer.exe
 
 On Windows, MicroK8s can be run on **Hyper-V** based VM or **VirtualBox** based VM. Both of these requires at least 4GB free RAM & 50GB free disk spaces available. On Windows 10/11 Home Edition, you must using VirtualBox approach since Hyper-V is not available on that SKU.
 
-Recommend to install *[Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/)* & *[PowerShell v7.2 or above](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows)* for better CLI experience.
+Recommend to install
+
+* [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/)
+* [PowerShell v7.2 or above](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows)
+* [gsudo](https://gerardog.github.io/gsudo/)
+
+for better CLI experience.
 
 The fastest way is to install those tools are by "[winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/)" command lines:
 ```
@@ -49,7 +61,7 @@ winget install --id Microsoft.WindowsTerminal
 If your system drive (C:) is less than 50GB free space, you can create symbolic link in PowerShell with Administrator permission, so redirect various configuration and VM image files of multipass saving to another disk drive, for example, the following command make those files save to `D:\multipassd` folder:  
 (**Note**: you have to create target empty folder `D:\multipassd` before running this command.)
 ```
-New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\config\systemprofile\AppData\Roaming\multipassd\" -Target "D:\multipassd\"
+gsudo New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\config\systemprofile\AppData\Roaming\multipassd\" -Target "D:\multipassd\"
 ```
 
 #### Hyper-V installation 
@@ -162,6 +174,30 @@ The most straightforward way to install is by "[winget](https://docs.microsoft.c
    ![McroK8s install completed ](./pics/Install_MicroK8s_VBox_05.png)  
    We can start using **microk8s** on command line window, for example, `microk8s status --wait-ready` to check running status:  
    ![McroK8s VM creation spec](./pics/Install_MicroK8s_VBox_06.png)
-   
+
+##### Configuration
+
+Because the limitation of VirtualBox's NAT virtual network adapter, to use [microk8s kubectl cli](https://microk8s.io/docs/working-with-kubectl) command, you need to add port mapping to redirect port to host computer:
+
+1. Install [gsudo](https://gerardog.github.io/gsudo/)
+2. Open VirtualBox manager GUI as *Local System* permission by:
+   ```powershell
+   gsudo -s '& "$env:VBOX_MSI_INSTALL_PATH\VirtualBox.exe"'
+   ```
+   Add **16643** port forwarding of NAT network adapter 1 of microk8s-vm to host computer:    ![Add port 16643 port mapping to host computer](./pics/microk8s_virtualbox_kubectl_port_mapping.png)
+   Or you can use following command to do it at once without leaving CLI windows:
+   ```powershell
+   sudo -s '& "$env:VBOX_MSI_INSTALL_PATH\VBoxManage.exe" controlvm microk8s-vm natpf1 "kubectl_port, tcp,,16443,,16443"'
+   ```
+3. Modify MicorK8s configuration file `%LOCALAPPDATA%\MicroK8S\config` on Windows Host side, like following PowerShell command to open that file in Visual Studio Code:
+    ```
+    code "$env:localappdata\MicroK8S\config"
+    ```  
+    Replace line 5 `https://[private IPv4 address]:16443`'s IP address with **127.0.0.1** like following:  
+    ```yaml
+    server: https://127.0.0.1:16443
+    ```
+    ![set MicroK8S config file](./pics/Set_Microk8s_virtualbox_kubectl_local_config.png)
+
 Some other configuration notices can be found on [official document](https://multipass.run/docs/using-virtualbox-in-multipass-windows).
 
